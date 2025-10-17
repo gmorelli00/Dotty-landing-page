@@ -22,7 +22,6 @@ const Onboarding = () => {
     email: "",
     phone: "",
     profession: "",
-    // niche: "",
     goal: "",
     timeAvailability: "",
     socialExpertise: "",
@@ -30,57 +29,49 @@ const Onboarding = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // const niches = [
-  //   "Make-up Artist",
-  //   "Nail Artist",
-  //   "Personal Trainer",
-  //   "Hair Stylist",
-  //   "Tattoo Artist",
-  // ];
-
   const brandValues = [
-    "Autenticità",
-    "Creatività",
-    "Innovazione",
-    "Qualità",
-    "Professionalità",
-    "Eleganza",
-    "Passione",
-    "Empatia",
-    "Affidabilità",
-    "Trasparenza",
-    "Unicità",
-    "Sostenibilità",
-    "Esclusività",
-    "Precisione",
-    "Cura dei dettagli",
-    "Dinamicità",
-    "Modernità",
-    "Tradizione",
-    "Semplicità",
-    "Lusso",
+    "Authenticity",
+    "Creativity",
+    "Innovation",
+    "Quality",
+    "Professionalism",
+    "Elegance",
+    "Passion",
+    "Empathy",
+    "Reliability",
+    "Transparency",
+    "Uniqueness",
+    "Sustainability",
+    "Exclusivity",
+    "Precision",
+    "Attention to detail",
+    "Dynamism",
+    "Modernity",
+    "Tradition",
+    "Simplicity",
+    "Luxury",
   ];
 
   const timeAvailability = [
-    "30 minuti al giorno",
-    "1 ora al giorno",
-    "2-3 ore al giorno",
-    "5-10 ore a settimana",
-    "10+ ore a settimana",
+    "30 minutes per day",
+    "1 hour per day",
+    "2–3 hours per day",
+    "5–10 hours per week",
+    "10+ hours per week",
   ];
 
   const socialExpertise = [
-    "Principiante - Poca esperienza, preferisco contenuti semplici",
-    "Intermedio - So creare post e storie basiche",
-    "Avanzato - Creo video e reel con editing professionale",
-    "Esperto - Lavoro con suite professionali (Premiere, After Effects)",
+    "Beginner – Little experience, I prefer simple content",
+    "Intermediate – I can create basic posts and stories",
+    "Advanced – I create videos and reels with professional editing",
+    "Expert – I work with professional suites (Premiere, After Effects)",
   ];
 
   const goals = [
     "Brand Awareness",
-    "Generazione Lead",
-    "Prenotazioni Clienti",
-    "Crescita Engagement",
+    "Lead Generation",
+    "Client Bookings",
+    "Engagement Growth",
     "Community Building",
   ];
 
@@ -88,42 +79,42 @@ const Onboarding = () => {
     if (step === 1 && (!formData.name || !formData.surname || !formData.email)) {
       toast({
         title: "Required Fields",
-        description: "Fill the required fields",
+        description: "Please fill in the required fields",
         variant: "destructive",
       });
       return;
     }
     if (step === 2 && !formData.profession) {
       toast({
-        title: "Campo Obbligatorio",
-        description: "Seleziona la tua professione",
+        title: "Required Field",
+        description: "Please enter your profession",
         variant: "destructive",
       });
       return;
     }
-    if (step === 3 && (!formData.goal)) {
+    if (step === 3 && !formData.goal) {
       toast({
-        title: "Campi Obbligatori",
-        description: "Seleziona obiettivo",
+        title: "Required Field",
+        description: "Please select your main goal",
         variant: "destructive",
       });
       return;
     }
     if (step === 4 && (!formData.timeAvailability || !formData.socialExpertise)) {
       toast({
-        title: "Campi Obbligatori",
-        description: "Completa le informazioni richieste",
+        title: "Required Fields",
+        description: "Please complete all required information",
         variant: "destructive",
       });
       return;
     }
-    
+
     if (step < 5) {
       setStep(step + 1);
     } else {
       toast({
-        title: "Benvenuto! 🎉",
-        description: "Il tuo profilo è pronto. Iniziamo a creare contenuti!",
+        title: "Welcome! 🎉",
+        description: "Your profile is ready. Let’s start creating content!",
       });
       navigate("/dashboard");
     }
@@ -140,10 +131,10 @@ const Onboarding = () => {
         <div className="mb-6 md:mb-8">
           <div className="flex justify-between mb-2">
             <span className="text-sm font-medium text-muted-foreground">
-              Step {step} di 5
+              Step {step} of 5
             </span>
             <span className="text-sm font-medium text-primary">
-              {Math.round((step / 5) * 100)}% Completato
+              {Math.round((step / 5) * 100)}% Completed
             </span>
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -156,13 +147,13 @@ const Onboarding = () => {
 
         {/* Main Card */}
         <div className="bg-card rounded-2xl shadow-strong p-8 md:p-12">
-          {/* Step 1: Profession */}
+          {/* Step 1 */}
           {step === 1 && (
             <div className="space-y-6 animate-fade-in">
               <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold">Parlaci di te</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">Tell us about yourself</h2>
                 <p className="text-muted-foreground">
-                  Aiutaci a capire chi sei.
+                  Help us understand who you are.
                 </p>
               </div>
               <div className="space-y-2">
@@ -199,71 +190,34 @@ const Onboarding = () => {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone number</Label>
+                <Label htmlFor="phone">Phone Number</Label>
                 <Input
                   id="phone"
-                  placeholder="Phone number"
+                  placeholder="Phone Number"
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
                 />
               </div>
-              {/* <div className="space-y-2">
-                <Label htmlFor="profession">Professione o Attività</Label>
-                <Textarea
-                  id="profession"
-                  placeholder="Es: Fotografo matrimonialista specializzato in destinazioni esotiche..."
-                  value={formData.profession}
-                  onChange={(e) =>
-                    setFormData({ ...formData, profession: e.target.value })
-                  }
-                  maxLength={150}
-                  rows={4}
-                  className="resize-none"
-                />
-                <p className="text-xs text-muted-foreground">
-                  {formData.profession.length}/150 caratteri
-                </p>
-              </div> */}
             </div>
           )}
 
-          {/* Step 2: Niche */}
+          {/* Step 2 */}
           {step === 2 && (
             <div className="space-y-6 animate-fade-in">
               <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold">Qual è la tua nicchia?</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">What’s your niche?</h2>
                 <p className="text-muted-foreground">
-                  Questo ci aiuta a creare idee di contenuto specifiche per il tuo settore.
+                  This helps us create content ideas specific to your field.
                 </p>
               </div>
-              
-              {/* <div className="space-y-2">
-                <Label htmlFor="niche">Seleziona la Tua Nicchia</Label>
-                <Select
-                  value={formData.niche}
-                  onValueChange={(value) =>
-                    setFormData({ ...formData, niche: value })
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Scegli la tua nicchia" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {niches.map((niche) => (
-                      <SelectItem key={niche} value={niche}>
-                        {niche}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div> */}
+
               <div className="space-y-2">
-                <Label htmlFor="profession">Professione o Attività</Label>
+                <Label htmlFor="profession">Profession or Activity</Label>
                 <Textarea
                   id="profession"
-                  placeholder="Es: Fotografo matrimonialista specializzato in destinazioni esotiche..."
+                  placeholder="E.g.: Wedding photographer specializing in exotic destinations..."
                   value={formData.profession}
                   onChange={(e) =>
                     setFormData({ ...formData, profession: e.target.value })
@@ -273,24 +227,24 @@ const Onboarding = () => {
                   className="resize-none"
                 />
                 <p className="text-xs text-muted-foreground">
-                  {formData.profession.length}/150 caratteri
+                  {formData.profession.length}/150 characters
                 </p>
               </div>
             </div>
           )}
 
-          {/* Step 3: Goal & Tone */}
+          {/* Step 3 */}
           {step === 3 && (
             <div className="space-y-6 animate-fade-in">
               <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold">Definisci il tuo approccio</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">Define your approach</h2>
                 <p className="text-muted-foreground">
-                  Qual è il tuo obiettivo principale e come vuoi comunicare?
+                  What’s your main goal and how do you want to communicate?
                 </p>
               </div>
-              
+
               <div className="space-y-2">
-                <Label htmlFor="goal">Obiettivo Principale</Label>
+                <Label htmlFor="goal">Main Goal</Label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {goals.map((goal) => {
                     const isSelected = formData.goal === goal;
@@ -314,18 +268,18 @@ const Onboarding = () => {
             </div>
           )}
 
-          {/* Step 5: Time & Expertise */}
+          {/* Step 4 */}
           {step === 4 && (
             <div className="space-y-6 animate-fade-in">
               <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold">Tempo e Competenze</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">Time & Skills</h2>
                 <p className="text-muted-foreground">
-                  Aiutaci a personalizzare la strategia in base alle tue disponibilità
+                  Help us personalize your strategy based on your availability.
                 </p>
               </div>
-              
+
               <div className="space-y-2">
-                <Label htmlFor="timeAvailability">Tempo Disponibile per Creare Contenuti</Label>
+                <Label htmlFor="timeAvailability">Available Time for Content Creation</Label>
                 <Select
                   value={formData.timeAvailability}
                   onValueChange={(value) =>
@@ -333,7 +287,7 @@ const Onboarding = () => {
                   }
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Quanto tempo hai?" />
+                    <SelectValue placeholder="How much time do you have?" />
                   </SelectTrigger>
                   <SelectContent>
                     {timeAvailability.map((time) => (
@@ -346,7 +300,7 @@ const Onboarding = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="socialExpertise">Livello di Dimestichezza con i Social</Label>
+                <Label htmlFor="socialExpertise">Social Media Expertise Level</Label>
                 <Select
                   value={formData.socialExpertise}
                   onValueChange={(value) =>
@@ -354,7 +308,7 @@ const Onboarding = () => {
                   }
                 >
                   <SelectTrigger>
-                    <SelectValue placeholder="Come ti definisci?" />
+                    <SelectValue placeholder="How would you describe yourself?" />
                   </SelectTrigger>
                   <SelectContent>
                     {socialExpertise.map((level) => (
@@ -368,26 +322,26 @@ const Onboarding = () => {
             </div>
           )}
 
-          {/* Step 6: Summary */}
+          {/* Step 5 */}
           {step === 5 && (
             <div className="space-y-6 animate-fade-in">
               <div className="space-y-2 text-center">
                 <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Sparkles className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold">Tutto pronto!</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">All set!</h2>
                 <p className="text-muted-foreground">
-                  Ecco il tuo profilo. Pronto a generare le prime idee di contenuto?
+                  Here’s your profile. Ready to start generating content ideas?
                 </p>
               </div>
-              
+
               <div className="bg-muted/50 rounded-lg p-6 space-y-3">
                 <div>
-                  <p className="text-sm text-muted-foreground">Nome</p>
+                  <p className="text-sm text-muted-foreground">Name</p>
                   <p className="font-medium">{formData.name}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Cognome</p>
+                  <p className="text-sm text-muted-foreground">Surname</p>
                   <p className="font-medium">{formData.surname}</p>
                 </div>
                 <div>
@@ -395,23 +349,23 @@ const Onboarding = () => {
                   <p className="font-medium">{formData.email}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Telefono</p>
+                  <p className="text-sm text-muted-foreground">Phone</p>
                   <p className="font-medium">{formData.phone}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Professione</p>
+                  <p className="text-sm text-muted-foreground">Profession</p>
                   <p className="font-medium">{formData.profession}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Obiettivo</p>
+                  <p className="text-sm text-muted-foreground">Goal</p>
                   <p className="font-medium">{formData.goal}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Tempo Disponibile</p>
+                  <p className="text-sm text-muted-foreground">Available Time</p>
                   <p className="font-medium">{formData.timeAvailability}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Livello Social</p>
+                  <p className="text-sm text-muted-foreground">Social Level</p>
                   <p className="font-medium">{formData.socialExpertise}</p>
                 </div>
               </div>
@@ -435,7 +389,7 @@ const Onboarding = () => {
               onClick={handleNext}
               className="flex-1"
             >
-              {step === 5 ? "Inizia a Creare" : "Continua"}
+              {step === 5 ? "Start Creating" : "Continue"}
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </div>
